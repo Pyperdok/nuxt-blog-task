@@ -50,28 +50,29 @@
 <template>
   <div class="container">
     <h1>Posts</h1>
-    <div v-for="post in posts" :key="post.id">
-      <nuxt-link :to="'/posts/' + post.id">
-        <h2>{{ post.title }}</h2>
-        <img :src="post.image">
-        <p>{{ post.content }}</p>
-      </nuxt-link>
+    <div class="posts">
+      <div v-for="post in posts" :key="post.id">
+        <nuxt-link :to="'/posts/' + post.id">
+          <h2>{{ post.title }}</h2>
+          <img :src="post.image">
+          <p>{{ post.content }}</p>
+        </nuxt-link>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  data() {
-    return {
-      posts: [
-        { id: 1, title: "First Post", image: "/kitten.jpg", content: "This is the content of the first post." },
-        { id: 2, title: "Second Post", image: "/kitten.jpg", content: "This is the content of the second post." },
-        { id: 2, title: "Third Post", image: "/kitten.jpg", content: "This is the content of the third post." },
-        // ... add more posts as needed
-      ]
-    };
-  }
+  // data: () => {
+  //   return {
+  //     posts: []
+  //   }
+  // },
+  // async asyncData({ $content }) {
+  //   const posts = await $content('blog', 'first-post').fetch();
+  //   return { posts };
+  // }
 }
 </script>
 
@@ -85,7 +86,8 @@ div {
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 }
 
-h1, h2 {
+h1,
+h2 {
   font-weight: bold;
 }
 
