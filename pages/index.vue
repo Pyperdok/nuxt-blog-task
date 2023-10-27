@@ -1,13 +1,13 @@
 <template>
-  <div class="container">
-    <h1>Posts</h1>
-    <div class="posts">
+  <div class="container mx-auto h-full w-[500px]">
+    <h1 class="font-bold mb-3">Posts</h1>
+    <div class="posts flex flex-col items-center">
       <div v-for="post in posts" :key="post.slug">
-        <nuxt-link class="flex post" :to="'/posts/' + post.slug">
-          <img :src="post.image">
-          <div class="flex post-text">
-            <p class="title">{{ post.title }}</p>
-            <div style="word-wrap: break-word;">{{ post.description }}</div>
+        <nuxt-link class="flex post border-2 border-black mb-10 justify-start" :to="'/posts/' + post.slug">
+          <img class="w-36 h-36" :src="post.image">
+          <div class="post-text flex flex-col justify-center pl-3.5 w-[350px]">
+            <p class="title font-bold">{{ post.title }}</p>
+            <p style="word-wrap: break-word;">{{ post.description }}</p>
           </div>
         </nuxt-link>
       </div>
@@ -23,52 +23,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-.container {
-  font-family: 'Arial', sans-serif;
-  width: 500px;
-  overflow-y: auto;
-  height: 75vh;
-  margin: 50px auto;
-  padding: 20px;
-  background-color: #f9f9f9;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-}
-
-h1,
-h2 {
-  font-weight: bold;
-}
-
-img {
-  width: 150px;
-  height: 150px;
-}
-
-.title {
-  font-weight: bold;
-}
-
-.post-text {
-  flex-direction: column;
-  justify-content: center;
-  padding-left: 15px;
-  width: 350px;
-}
-
-.post {
-  border: solid black 1px;
-  margin: auto;
-  justify-content: start;
-  margin-bottom: 50px;
-}
-p {
-  word-wrap:normal;
-}
-.posts {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-</style>

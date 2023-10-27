@@ -1,20 +1,17 @@
 <template>
-  <div class="container">
+  <div class="container mx-auto my-10">
     <div class="flex post">
-      <img :src="post.image">
-      <div class="post-text">
-        <p class="title">{{ post.title }}</p>
-        <p class="date"> {{ formatData(post.createdAt) }}</p>
-        <br>
-        <p>{{ post.description }}</p>
-        <br>
-        <nuxt-content :document="post" />
-        <br>
+      <img class="w-36 h-36" :src="post.image">
+      <div class="post-text pl-3.5">
+        <p class="title font-bold mb-3">{{ post.title }}</p>
+        <p class="date mb-3"> {{ formatData(post.createdAt) }}</p>
+        <p class="desc mb-3">{{ post.description }}</p>
+        <nuxt-content class="content mb-5" :document="post" />
         <button class="mb-5 circle-button">
           <nuxt-link to="/">Back to post list</nuxt-link>
         </button>
 
-        <div class="reviews" v-for="review in reviews">
+        <div class="reviews mb-5" v-for="review in reviews">
           <Review :review="review" />
         </div>
         <ReviewForm @review-submitted="addReview" />
@@ -42,29 +39,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-.container {
-  margin: 50px auto;
-  padding: 20px;
-  background-color: #f9f9f9;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-}
-
-.title {
-  font-weight: bold;
-}
-
-.post-text {
-  padding-left: 15px;
-}
-
-img {
-  width: 150px;
-  height: 150px;
-}
-
-.reviews {
-  margin-bottom: 25px;
-}
-</style>
