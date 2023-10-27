@@ -7,7 +7,7 @@
           <img :src="post.image">
           <div class="flex post-text">
             <p class="title">{{ post.title }}</p>
-            <p>{{ post.description }}</p>
+            <div style="word-wrap: break-word;">{{ post.description }}</div>
           </div>
         </nuxt-link>
       </div>
@@ -18,7 +18,7 @@
 <script>
 export default {
   async asyncData({ $content }) {
-    const posts = await $content('blog').fetch();
+    const posts = await $content('blog').sortBy('createdAt', 'asc').fetch();
     return { posts };
   }
 }
@@ -27,7 +27,9 @@ export default {
 <style scoped>
 .container {
   font-family: 'Arial', sans-serif;
-  max-width: 800px;
+  width: 500px;
+  overflow-y: auto;
+  height: 75vh;
   margin: 50px auto;
   padding: 20px;
   background-color: #f9f9f9;
@@ -51,15 +53,22 @@ img {
 .post-text {
   flex-direction: column;
   justify-content: center;
-  margin-left: 15px;
+  padding-left: 15px;
+  width: 350px;
 }
 
 .post {
   border: solid black 1px;
   margin: auto;
   justify-content: start;
-  max-width: 700px;
   margin-bottom: 50px;
-  flex-grow: 0;
+}
+p {
+  word-wrap:normal;
+}
+.posts {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 </style>
